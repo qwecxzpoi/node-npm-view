@@ -8,7 +8,7 @@
 
 - npm install
 
-- 将你的package.json复制到app.js同级目录下
+- 将你的package-lock.json复制到app.js同级目录下
 
 - node .\app.js
 
