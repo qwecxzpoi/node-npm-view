@@ -8,6 +8,8 @@
 
 - npm install
 
-- 在app.js里面添加你需要批量录入的包名加版本号
+- 将你的package.json复制到app.js同级目录下
 
 - node .\app.js
+
+- 由于网络或者其他原因造成的没有下载成功的包在error.txt下

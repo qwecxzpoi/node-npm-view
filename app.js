@@ -2,15 +2,24 @@ const path = require('path');
 const fs = require('fs');
 const request = require("request");
 const url = require('url');
+const data = require(path.join(__dirname, 'data.json'))
 
 const viewList = []; //此处填写你需要批量下载的包名加版本 例：react-dom@18.2.0
-var urlList = [];
-viewList.forEach(ele=>{
-    urlList.push('https://registry.npmmirror.com/'+ele.split('@')[0]+'/-/'+ele.split('@')[0]+'-'+ele.split('@')[1]+'.tgz')
+
+Object.keys(data.packages).forEach(item=>{
+    if(item.length>0){
+        viewList.push(data.packages[item].resolved)
+    }
 })
-console.log(urlList);
+Object.keys(data.dependencies).forEach(item=>{
+    if(item.length>0){
+        viewList.push(data.dependencies[item].resolved)
+    }
+})
+
 var dirPath = path.join(__dirname, "file");
 delDirectory(dirPath);
+fs.unlinkSync(`${__dirname}/error.txt`);
 if (!fs.existsSync(dirPath)) {
   fs.mkdirSync(dirPath);
   console.log("文件夹创建成功");
@@ -18,7 +27,7 @@ if (!fs.existsSync(dirPath)) {
   console.log("文件夹已存在");
 }
 
-urlList.forEach(ele=>{
+viewList.forEach(ele=>{
     var writestream = fs.createWriteStream('./file/'+url.parse(ele).path.split('/-/')[1]);
     var readstream  = request(ele)
     readstream.pipe(writestream);
@@ -27,6 +36,12 @@ urlList.forEach(ele=>{
     });
     readstream.on('error', function (err) {
         console.log("错误信息:" + err)
+        fs.appendFile('error.txt',ele+'\n','utf8',function(error){
+            if(error){
+                console.log(error);
+                return false;
+            }
+        })
     })
 
     writestream.on("finish", function () {
