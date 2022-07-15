@@ -4,7 +4,7 @@ const request = require("request");
 const url = require('url');
 const data = require(path.join(__dirname, 'data.json'))
 
-const viewList = []; //此处填写你需要批量下载的包名加版本 例：react-dom@18.2.0
+const viewList = [];
 
 Object.keys(data.packages).forEach(item=>{
     if(item.length>0){
