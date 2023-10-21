@@ -6,38 +6,43 @@ const data = require(path.join(__dirname, 'data.json'))
 
 const viewList = [];
 
-Object.keys(data.packages).forEach(item=>{
-    if(item.length>0){
-        viewList.push(data.packages[item].resolved)
-    }
-})
-Object.keys(data.dependencies).forEach(item=>{
-    if(item.length>0){
-        viewList.push(data.dependencies[item].resolved)
-    }
-})
+if (data.packages) {
+    Object.keys(data.packages).forEach(item => {
+        if (item.length > 0) {
+            viewList.push(data.packages[item].resolved)
+        }
+    })
+}
+
+if (data.dependencies) {
+    Object.keys(data.dependencies).forEach(item => {
+        if (item.length > 0) {
+            viewList.push(data.dependencies[item].resolved)
+        }
+    })
+}
 
 var dirPath = path.join(__dirname, "file");
 delDirectory(dirPath);
-fs.unlinkSync(`${__dirname}/error.txt`);
+
 if (!fs.existsSync(dirPath)) {
-  fs.mkdirSync(dirPath);
-  console.log("文件夹创建成功");
+    fs.mkdirSync(dirPath);
+    console.log("文件夹创建成功");
 } else {
-  console.log("文件夹已存在");
+    console.log("文件夹已存在");
 }
 
-viewList.forEach(ele=>{
-    var writestream = fs.createWriteStream('./file/'+url.parse(ele).path.split('/-/')[1]);
-    var readstream  = request(ele)
+viewList.forEach(ele => {
+    var writestream = fs.createWriteStream('./file/' + url.parse(ele).path.split('/-/')[1]);
+    var readstream = request(ele)
     readstream.pipe(writestream);
     readstream.on('end', function () {
-        console.log(url.parse(ele).path.split('/-/')[1]+'文件下载成功');
+        console.log(url.parse(ele).path.split('/-/')[1] + '文件下载成功');
     });
     readstream.on('error', function (err) {
         console.log("错误信息:" + err)
-        fs.appendFile('error.txt',ele+'\n','utf8',function(error){
-            if(error){
+        fs.appendFile('error.txt', ele + '\n', 'utf8', function (error) {
+            if (error) {
                 console.log(error);
                 return false;
             }
@@ -45,7 +50,7 @@ viewList.forEach(ele=>{
     })
 
     writestream.on("finish", function () {
-        console.log(url.parse(ele).path.split('/-/')[1]+"文件写入成功");
+        console.log(url.parse(ele).path.split('/-/')[1] + "文件写入成功");
         writestream.end();
     });
 })
