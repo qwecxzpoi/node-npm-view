@@ -1,23 +1,25 @@
 {
   "name": "node-npm-view",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "benyuanzhang",
+  "license": "Apache-2.0",
+  "bin": {
+    "download-tgz": "index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "scripts": {},
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.13.3",
     "@types/request": "^2.48.12",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+    "eslint": "^8.57.0",
+    "unbuild": "^2.0.0"
   }
 }
