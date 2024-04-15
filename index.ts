@@ -1,10 +1,11 @@
-const path = require('path');
-const fs = require('fs');
-const request = require("request");
-const url = require('url');
+import path from 'path';
+import fs from 'fs';
+import request from "request";
+import url from 'url';
+
 const data = require(path.join(__dirname, 'data.json'))
 
-const viewList = [];
+const viewList: string[] = [];
 
 if (data.packages) {
     Object.keys(data.packages).forEach(item => {
@@ -29,15 +30,18 @@ if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath);
     console.log("文件夹创建成功");
 } else {
+    fs.rmSync(dirPath)
     console.log("文件夹已存在");
 }
 
-viewList.forEach(ele => {
-    var writestream = fs.createWriteStream('./file/' + url.parse(ele).path.split('/-/')[1]);
+
+viewList.filter(Boolean).forEach(ele => {
+
+    var writestream = fs.createWriteStream('./file/' + url.parse(ele).path!.split('/-/')[1]);
     var readstream = request(ele)
     readstream.pipe(writestream);
     readstream.on('end', function () {
-        console.log(url.parse(ele).path.split('/-/')[1] + '文件下载成功');
+        console.log(url.parse(ele).path!.split('/-/')[1] + '文件下载成功');
     });
     readstream.on('error', function (err) {
         console.log("错误信息:" + err)

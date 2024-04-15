@@ -1,8 +1,9 @@
 {
-  "name": "serve",
+  "name": "node-npm-view",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +14,10 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "javascript-obfuscator": "^4.0.0"
+    "@types/request": "^2.48.12",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   }
 }
