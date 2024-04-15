@@ -54,13 +54,13 @@ viewList.filter(Boolean).forEach(ele => {
     })
 
     writestream.on("finish", function () {
-        console.log(url.parse(ele).path.split('/-/')[1] + "文件写入成功");
+        console.log(url.parse(ele).path!.split('/-/')[1] + "文件写入成功");
         writestream.end();
     });
 })
 
 //清空file文件
-function delDirectory(dir) {
+function delDirectory(dir: string) {
     let files = [];
     if (fs.existsSync(dir)) {
         files = fs.readdirSync(dir);
