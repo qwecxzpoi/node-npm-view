@@ -1,6 +1,4 @@
-node_modules
 .idea
-file
-download-node
-data.json
-
+node_modules
+dist
+pnpm-lock.yaml

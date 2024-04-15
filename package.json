@@ -1,25 +1,48 @@
 {
-  "name": "node-npm-view",
+  "name": "@vinfo/node-npm-view",
   "type": "module",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "download .tgz that package-lock.json by node.js",
   "author": "benyuanzhang",
   "license": "Apache-2.0",
   "bin": {
-    "download-tgz": "index.js"
+    "tgz": "bin/index.mjs"
   },
-  "scripts": {},
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "start": "esno ./src/index.ts",
+    "build": "unbuild",
+    "dev": "rimraf dist && pnpm build && pnpm i -g ~/project/node-npm-view/",
+    "typecheck": "tsc",
+    "release": "bumpp && pnpm publish --no-git-checks"
+  },
+  "keywords": [
+    "download tgz",
+    "package-lock.json"
+  ],
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "request": "^2.88.2"
+    "rimraf": "^5.0.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.13.3",
-    "@types/request": "^2.48.12",
+    "@types/node": "^20.12.7",
+    "bumpp": "^9.4.0",
     "eslint": "^8.57.0",
+    "esno": "^4.7.0",
+    "typescript": "^5.4.5",
     "unbuild": "^2.0.0"
   }
 }
