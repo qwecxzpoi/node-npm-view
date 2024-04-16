@@ -9,10 +9,8 @@
 
 - 需要node环境
 
-- npm install
+- npm install -g @vinfo/node-npm-view
 
-- 将你的package-lock.json复制到app.js同级目录下
-
-- node .\app.js
+- 在目标文件下使用，需要 package-lock.json
 
 - 由于网络或者其他原因造成的没有下载成功的包在error.txt下
