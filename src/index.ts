@@ -42,7 +42,7 @@ try {
     .forEach((src) => {
       const filename = new URL(src).pathname.split('/-/')[1]
 
-      execSync(`curl -o ${dirPath}/${filename} ${src} -s`)
+      execSync(`curl -o ${dirPath}/${filename} ${src} -s -L`)
       log(`${filename} 下载完成`)
     })
 
