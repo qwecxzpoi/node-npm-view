@@ -1,7 +1,7 @@
 {
   "name": "@vinfo/node-npm-view",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "download .tgz that package-lock.json by node.js",
   "author": "benyuanzhang",
   "license": "Apache-2.0",
