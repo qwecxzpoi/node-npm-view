@@ -17,10 +17,11 @@
   "scripts": {
     "lint": "eslint .",
     "start": "esno ./src/index.ts",
-    "build": "unbuild",
-    "dev": "rimraf dist && pnpm build && pnpm i -g ~/project/node-npm-view/",
+    "build": "rimraf dist && unbuild",
+    "dev": "pnpm build && pnpm i -g ~/project/node-npm-view/",
     "typecheck": "tsc",
-    "release": "bumpp && pnpm publish --no-git-checks"
+    "release": "bumpp && pnpm publish --no-git-checks",
+    "prepublishOnly": "pnpm build"
   },
   "keywords": [
     "download tgz",
