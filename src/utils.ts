@@ -25,5 +25,5 @@ export function delDirectory(path: string) {
  * @param downloadedList 已经下载的列表
  */
 export function compare(sourceArr: string[], downloadedList: string[]) {
-  return sourceArr.filter(item => !downloadedList.some(i => i.endsWith(`/-/${i}`)))
+  return sourceArr.filter(item => !downloadedList.some(i => item.endsWith(`/-/${i}`)))
 }
