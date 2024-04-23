@@ -49,7 +49,7 @@ try {
   const downloadedList = fs.readdirSync(dirPath)
   const result = compare(viewList, downloadedList)
   const resultStr = result.join('\n')
-  fs.writeFileSync(resultPath, `下载执行完毕，完成度${downloadedList.length}/${result.length}：\n${resultStr}`, 'utf-8')
+  fs.writeFileSync(resultPath, `下载执行完毕，完成度${result.length}/${downloadedList.length}：\n未下载地址：\n${resultStr}`, 'utf-8')
 }
 catch (e) {
   fs.appendFileSync(errorPath, `${(e as any).message || e}\n`, 'utf-8')
