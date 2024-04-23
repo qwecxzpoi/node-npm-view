@@ -14,6 +14,14 @@
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "homepage": "https://github.com/qwecxzpoi/node-npm-view#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qwecxzpoi/node-npm-view.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qwecxzpoi/node-npm-view/issues"
+  },
   "scripts": {
     "lint": "eslint .",
     "start": "esno ./src/index.ts",
